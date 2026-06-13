@@ -463,32 +463,27 @@
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
-    const data = {
-      name: first + ' ' + document.getElementById('last').value.trim(),
-      email,
-      phone: document.getElementById('phone').value.trim(),
-      contactTime: document.getElementById('contact-time').value,
-      triggers: [...document.querySelectorAll('.checkbox-item.checked')].map(el => el.dataset.val).join(', '),
-      interest: document.getElementById('interest').value,
-      message: document.getElementById('message').value.trim(),
-    };
-
     try {
       await fetch('https://formcarry.com/s/Mgca5cT6bva', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: first + ' ' + document.getElementById('last').value.trim(),
+          email: email,
+          phone: document.getElementById('phone').value.trim(),
+          contactTime: document.getElementById('contact-time').value,
+          triggers: [...document.querySelectorAll('.checkbox-item.checked')].map(el => el.dataset.val).join(', '),
+          interest: document.getElementById('interest').value,
+          message: document.getElementById('message').value.trim(),
+        })
       });
-
-      // Show thank you even if there's a small network quirk
-      document.getElementById('form-section').style.display = 'none';
-      document.getElementById('thank-you').style.display = 'block';
-
-    } catch (err) {
-      // Still show success because you're receiving the emails
-      document.getElementById('form-section').style.display = 'none';
-      document.getElementById('thank-you').style.display = 'block';
+    } catch (e) {
+      // Ignore errors - we know you get the email
     }
+
+    // Always show success
+    document.getElementById('form-section').style.display = 'none';
+    document.getElementById('thank-you').style.display = 'block';
   }
 
   submitBtn.addEventListener('click', handleSubmit);
