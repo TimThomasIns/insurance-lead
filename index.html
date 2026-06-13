@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let's Talk Insurance | Free Consultation</title>
+  <meta name="description" content="Independent Life & Health Insurance Advisor - Get personalized coverage recommendations with no pressure.">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8fafc;
+      --panel-right: #ffffff;
+      --panel-left: #1e40af;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --ink: #1e2937;
+      --ink-mid: #475569;
+      --rule: #e2e8f0;
+      --pale: #f1f5f9;
+      --placeholder: #94a3b8;
+      --privacy: #64748b;
+      --checkbox-bg: #ffffff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --panel-right: #1e2937;
+        --panel-left: #1e3a8a;
+        --accent: #60a5fa;
+        --accent-light: #93c5fd;
+        --ink: #f1f5f9;
+        --ink-mid: #cbd5e1;
+        --rule: #334155;
+        --pale: #1e2937;
+        --placeholder: #64748b;
+        --privacy: #94a3b8;
+        --checkbox-bg: #1e2937;
+      }
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    .left {
+      background: var(--panel-left);
+      padding: 64px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 48px;
+    }
+
+    .headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 3.5vw, 48px);
+      line-height: 1.15;
+      font-weight: 400;
+      color: #ffffff;
+      margin-bottom: 24px;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: var(--accent-light);
+    }
+
+    .sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      max-width: 340px;
+    }
+
+    .left-bottom {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    .trust-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .trust-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      flex-shrink: 0;
+    }
+
+    .right {
+      padding: 64px 56px;
+      overflow-y: auto;
+      background: var(--panel-right);
+    }
+
+    .form-header { margin-bottom: 48px; }
+
+    .step-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .form-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .field-group { margin-bottom: 32px; }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--rule);
+      padding: 10px 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--placeholder);
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233b82f6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 4px center;
+      cursor: pointer;
+    }
+
+    textarea { resize: none; line-height: 1.6; }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 10px 12px;
+      border: 1.5px solid var(--rule);
+      border-radius: 8px;
+      background: var(--checkbox-bg);
+      transition: all 0.2s;
+    }
+
+    .checkbox-item:hover { border-color: var(--accent-light); }
+    .checkbox-item.checked { border-color: var(--accent); background: var(--pale); }
+
+    .check-box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--rule);
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkbox-item.checked .check-box {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .check-mark { display: none; width: 10px; height: 10px; }
+    .checkbox-item.checked .check-mark { display: block; }
+
+    .divider {
+      height: 1px;
+      background: var(--rule);
+      margin: 36px 0;
+    }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    .privacy-note {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--privacy);
+      max-width: 220px;
+      line-height: 1.5;
+    }
+
+    button[type="submit"] {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    button[type="submit"]:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+    .thank-you { display: none; text-align: center; padding: 80px 40px; }
+    .thank-you.visible { display: block; }
+
+    .thank-you-icon {
+      font-size: 48px;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .thank-you h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 720px) {
+      .page { grid-template-columns: 1fr; }
+      .left { position: static; height: auto; padding: 48px 28px 40px; }
+      .left-bottom { display: none; }
+      .right { padding: 40px 28px 64px; }
+      .field-row { grid-template-columns: 1fr; }
+      .checkbox-grid { grid-template-columns: 1fr; }
+      .submit-row { flex-direction: column; gap: 20px; align-items: flex-start; }
+      button[type="submit"] { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="left">
+    <div>
+      <div class="badge">Life & Health Insurance</div>
+      <h1 class="headline">Let's find the<br><em>right coverage</em><br>for you.</h1>
+      <p class="sub">A short conversation is all it takes. Fill out the form and I'll reach out within one business day — no pressure, no sales pitch.</p>
+    </div>
+    <div class="left-bottom">
+      <div class="trust-items">
+        <div class="trust-item"><span class="trust-dot"></span> Free, no-obligation consultation</div>
+        <div class="trust-item"><span class="trust-dot"></span> Your information stays private</div>
+        <div class="trust-item"><span class="trust-dot"></span> Licensed life & health advisor</div>
+      </div>
+      <div>© 2026 · Independent Insurance Advisor</div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div id="form-section">
+      <div class="form-header">
+        <div class="step-label">Get started</div>
+        <div class="form-title">Tell me a little about yourself</div>
+      </div>
+
+      <div id="intake-form">
+        <!-- Same form as before (kept clean) -->
+        <div class="field-group">
+          <div class="field-row">
+            <div>
+              <label for="first">First name</label>
+              <input type="text" id="first" placeholder="Jane" required />
+            </div>
+            <div>
+              <label for="last">Last name</label>
+              <input type="text" id="last" placeholder="Smith" />
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-row">
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="jane@email.com" required />
+            </div>
+            <div>
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" placeholder="(555) 000-0000" />
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="contact-time">Best time to reach you</label>
+          <select id="contact-time">
+            <option value="" disabled selected>Select a time</option>
+            <option>Morning (8am – 12pm)</option>
+            <option>Afternoon (12pm – 5pm)</option>
+            <option>Evening (5pm – 8pm)</option>
+            <option>Anytime</option>
+          </select>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="field-group">
+          <label>What's prompting you to look at insurance?</label>
+          <div class="checkbox-grid">
+            <div class="checkbox-item" data-val="new-baby"><input type="checkbox"><div class="check-box"><svg class="check-mark" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-label">New baby on the way</span></div>
+            <div class="checkbox-item" data-val="self-employed"><input type="checkbox"><div class="check-box"><svg class="check-mark" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-label">Self-employed / business owner</span></div>
+            <div class="checkbox-item" data-val="job-change"><input type="checkbox"><div class="check-box"><svg class="check-mark" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-label">Lost / changing jobs</span></div>
+            <div class="checkbox-item" data-val="married"><input type="checkbox"><div class="check-box"><svg class="check-mark" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-label">Recently married or divorced</span></div>
+            <div class="checkbox-item" data-val="no-coverage"><input type="checkbox"><div class="check-box"><svg class="check-mark" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-label">Currently uninsured</span></div>
+            <div class="checkbox-item" data-val="review"><input type="checkbox"><div class="check-box"><svg class="check-mark" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-label">Want to review current plan</span></div>
+            <div class="checkbox-item" data-val="turning-26"><input type="checkbox"><div class="check-box"><svg class="check-mark" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-label">Turning 26 / aging off plan</span></div>
+            <div class="checkbox-item" data-val="other"><input type="checkbox"><div class="check-box"><svg class="check-mark" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="check-label">Something else</span></div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="interest">Interested in</label>
+          <select id="interest">
+            <option value="" disabled selected>Select one</option>
+            <option>Life insurance</option>
+            <option>Health insurance</option>
+            <option>Both — not sure yet</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="message">Anything else you'd like me to know? (optional)</label>
+          <textarea id="message" rows="3" placeholder="Feel free to share any questions or context..."></textarea>
+        </div>
+
+        <div class="submit-row">
+          <p class="privacy-note">Your info is only used to follow up with you. Never shared or sold.</p>
+          <button type="submit" onclick="handleSubmit()">Send my details →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="thank-you" id="thank-you">
+      <div class="thank-you-icon">✦</div>
+      <h2>You're all set.</h2>
+      <p>Thanks for reaching out. I'll be in touch within one business day to set up a quick, no-pressure conversation.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.checkbox-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('checked');
+      item.querySelector('input[type="checkbox"]').checked = item.classList.contains('checked');
+    });
+  });
+
+  async function handleSubmit() {
+    const first = document.getElementById('first').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!first || !email) {
+      alert('Please enter your first name and email.');
+      return;
+    }
+
+    const btn = document.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = {
+      name: first + ' ' + document.getElementById('last').value.trim(),
+      email,
+      phone: document.getElementById('phone').value.trim(),
+      contactTime: document.getElementById('contact-time').value,
+      triggers: [...document.querySelectorAll('.checkbox-item.checked')].map(el => el.dataset.val).join(', '),
+      interest: document.getElementById('interest').value,
+      message: document.getElementById('message').value.trim(),
+    };
+
+    try {
+      const res = await fetch('https://formspree.io/f/mykabpdp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        document.getElementById('form-section').style.display = 'none';
+        document.getElementById('thank-you').classList.add('visible');
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      alert('Could not send. Check your connection.');
+    }
+
+    btn.textContent = 'Send my details →';
+    btn.disabled = false;
+  }
+</script>
+</body>
+</html>
